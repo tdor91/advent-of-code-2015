@@ -1,20 +1,28 @@
-﻿// (()) and()() both result in floor 0.
-// ((( and (()(()( both result in floor 3.
-// ))((((( also results in floor 3.
-// ()) and ))( both result in floor -1 (the first basement level).
-// ))) and )())()) both result in floor -3.
+﻿const string inputFile = "./input.txt";
+var input = await File.ReadAllTextAsync(inputFile);
 
+var opening = input.Count(c => c == '(');
+var closing = input.Count(c => c == ')');
+var result1 = opening - closing;
+Console.WriteLine(result1);
 
+var stack = new Stack<char>(['(']);
+var result2 = 1;
+foreach (var c in input)
+{
+    if (c == ')')
+    {
+        stack.Pop();
+        if (stack.Count == 0)
+        {
+            break;
+        }
+    }
+    else if (c == '(')
+    {
+        stack.Push(c);
+    }
 
-
-
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
-
-
-
-
-
-
-
+    result2++;
+}
+Console.WriteLine(result2);
