@@ -14,7 +14,6 @@ Console.WriteLine(result1);
 var result2 = routes.Max(order => order.Pairwise().Sum(pair => DistanceOf(pair.A, pair.B, distances)));
 Console.WriteLine(result2);
 
-
 (string A, string B, int Distance) Parse(string line)
 {
     const string pattern = @"(.*?) to (.*?) = (\d+)";
